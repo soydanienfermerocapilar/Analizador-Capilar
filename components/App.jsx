@@ -117,6 +117,12 @@ const RUTINAS = {
   tricotilomania:{ label:"Tricotilomanía", icon:"🤲", preguntas:[{id:"conciencia",texto:"¿Eres consciente cuando te arrancas el pelo?",opciones:["Sí, soy consciente","A veces, no siempre","No, es automático"]},{id:"zona",texto:"¿Dónde se concentra principalmente?",opciones:["Cuero cabelludo","Cejas o pestañas","Varias zonas"]},{id:"apoyo",texto:"¿Tienes apoyo psicológico actualmente?",opciones:["Sí","No, pero me lo estoy planteando","No"]}],
     getRutina:(r)=>({ aviso:"La tricotilomanía es un trastorno del control de impulsos. El tratamiento principal es psicológico. La rutina capilar cuida el cuero cabelludo afectado.", champu_corriente:{buscar:["Tensioactivos ultrasuaves","Pantenol","Aloe vera","Alantoína"],evitar:["SLS","MIT/CMIT","Fragancias artificiales"]}, champu_especifico:{buscar:["Niacinamida","Pantenol","Ácido hialurónico","Centella asiática"],evitar:["Fragancias","Alcohol Denat"],nota:"El objetivo es cuidar el cuero cabelludo y los folículos"}, acondicionador:{buscar:["Pantenol","Alantoína","Proteínas de seda"],evitar:["Fragancias artificiales","Siliconas pesadas"]}, minoxidil:{incluir:false}, suplementos:["Zinc","Biotina","Magnesio","Vitamina D","Omega 3"], medicacion:"El tratamiento es fundamentalmente psicológico (TCC). Consulta con un profesional de salud mental.", habitos:[r.apoyo==="No"?"🧠 El apoyo psicológico es el tratamiento principal":"✅ Continúa con tu apoyo psicológico","💆 Masaje suave como alternativa al arranque","💨 Seca el pelo antes de dormir","🤲 Mantén las manos ocupadas"] })
   },
+  fino:{ label:"Cabello fino y sin volumen", icon:"💫", preguntas:[{id:"origen",texto:"¿Tu cabello siempre ha sido fino o ha perdido volumen con el tiempo?",opciones:["Siempre ha sido fino","Ha perdido volumen con el tiempo","No estoy seguro/a"]},{id:"cuero",texto:"¿Cómo describes tu cuero cabelludo?",opciones:["Normal","Graso","Seco"]},{id:"acondicionador",texto:"¿Usas acondicionador o mascarillas habitualmente?",opciones:["Sí, siempre","A veces","No suelo usarlos"]}],
+    getRutina:(r)=>({ aviso:"El cabello fino necesita productos que aporten volumen sin sobrecargar la raíz. Menos es más.", champu_corriente:{buscar:["Tensioactivos suaves","Pantenol","Biotina","Niacinamida"],evitar:["Siliconas pesadas en raíz","Aceites pesados","SLS"]}, champu_especifico:{buscar:["Cafeína","Zinc","Extracto de romero","Proteínas hidrolizadas de trigo"],evitar:["Dimethicone","Fragancias artificiales"],nota:"Úsalo 3-4 veces por semana dejando actuar 2 minutos"}, acondicionador:{buscar:["Pantenol","Queratina hidrolizada","Proteínas de seda"],evitar:["Siliconas oclusivas en raíz","Aceites pesados — aplícalo solo en puntas"]}, minoxidil:{incluir:false}, suplementos:["Biotina","Zinc","Vitamina D","Colágeno hidrolizado","Complejo B"], medicacion:null, habitos:["💆 Masaje capilar diario de 5 minutos — estimula el folículo","🌡️ Agua tibia, nunca caliente","💨 Seca el pelo antes de dormir","🎀 Evita recogidos muy tensos",r.acondicionador==="Sí, siempre"?"⚠️ Aplica el acondicionador solo en puntas, nunca en raíz":"✅ Si usas acondicionador, aplícalo solo en puntas",r.cuero==="Graso"?"🧴 Lava cada 2 días — el exceso de sebo aplasta el cabello fino":"⏱️ Lava 2-3 veces por semana"] })
+  },
+  debilitado:{ label:"Cabello debilitado y sin brillo", icon:"🌾", preguntas:[{id:"tinte",texto:"¿Te tiñes o realizas tratamientos químicos (alisado, permanente...)?",opciones:["Sí, frecuentemente","Ocasionalmente","No"]},{id:"calor",texto:"¿Usas calor frecuentemente (secador, plancha, rizador)?",opciones:["Sí, casi todos los días","A veces","Rara vez o nunca"]},{id:"alimentacion",texto:"¿Cómo describirías tu alimentación?",opciones:["Equilibrada","Mejorable","Estoy a dieta o he perdido peso"]}],
+    getRutina:(r)=>({ aviso:"El cabello debilitado necesita nutrición, hidratación y reducción del daño. La alimentación y los hábitos son tan importantes como los productos.", champu_corriente:{buscar:["Tensioactivos ultrasuaves","Pantenol","Queratina hidrolizada","Aceites naturales ligeros"],evitar:["SLS","MIT/CMIT","Alcohol Denat","Fragancias artificiales"]}, champu_especifico:{buscar:["Pantenol","Ácido hialurónico","Proteínas hidrolizadas","Aceite de argán"],evitar:["Sulfatos agresivos","Alcohol Denat"],nota:"Úsalo 2-3 veces por semana con masaje suave"}, acondicionador:{buscar:["Pantenol","Queratina","Aceite de argán","Manteca de karité"],evitar:["Fragancias artificiales","Parabenos"]}, minoxidil:{incluir:false}, suplementos:["Biotina","Zinc","Colágeno hidrolizado","Vitamina C","Omega 3",r.alimentacion==="Estoy a dieta o he perdido peso"?"Hierro + vitamina C (fundamental)":"Vitamina D"], medicacion:null, habitos:[r.tinte==="Sí, frecuentemente"?"🎨 Espaciar los tintes — mínimo 6-8 semanas entre aplicaciones":"✅ Mantén tu frecuencia de tinte actual",r.calor==="Sí, casi todos los días"?"🔥 Reduce el uso de calor — usa protector térmico siempre y temperatura máxima 180°":"✅ Buen hábito con el calor — mantén el protector térmico","🌡️ Agua tibia, nunca caliente","💨 Seca el pelo antes de dormir","✂️ Cortar las puntas cada 2-3 meses elimina el daño acumulado",r.alimentacion!=="Equilibrada"?"🥗 Proteínas, hierro y zinc son esenciales para la fibra capilar":"✅ Mantén tu alimentación equilibrada"] })
+  },
   medicamentos:{ label:"Caída por medicamentos o bajada de peso brusca", icon:"💊", preguntas:[{id:"causa",texto:"¿Cuál es la causa principal?",opciones:["Medicamento (anticonceptivos, antidepresivos, retinoides...)","Bajada de peso brusca o dieta restrictiva","Ambas o no estoy seguro/a"]},{id:"fase",texto:"¿En qué momento estás?",opciones:["Aún tomando el medicamento / en la dieta","Acabo de terminar","Hace varios meses que terminé"]},{id:"intensidad",texto:"¿Cómo describes la caída?",opciones:["Moderada","Intensa","Muy intensa, me preocupa mucho"]}],
     getRutina:(r)=>({ aviso:r.causa==="Bajada de peso brusca o dieta restrictiva"?"La caída por restricción calórica es un efluvio telógeno reversible. Requiere restablecer el aporte nutricional.":"La caída asociada a ciertos medicamentos suele ser reversible. Nunca abandones un medicamento prescrito sin consultar a tu médico.", champu_corriente:{buscar:["Tensioactivos muy suaves","Pantenol","Aloe vera"],evitar:["SLS","MIT/CMIT","Parabenos"]}, champu_especifico:{buscar:["Cafeína","Niacinamida","Extracto de romero","Pantenol"],evitar:["Alcohol Denat","Fragancias fuertes"],nota:"3-4 veces por semana"}, acondicionador:{buscar:["Pantenol","Proteínas hidrolizadas","Queratina"],evitar:["Siliconas pesadas en raíz"]}, minoxidil:{incluir:false}, suplementos:r.causa==="Bajada de peso brusca o dieta restrictiva"?["Hierro + vitamina C (fundamental)","Proteínas completas en la dieta","Zinc","Biotina","Vitamina D"]:["Hierro si hay déficit","Zinc","Biotina","Vitamina D","Omega 3"], medicacion:"Nunca abandones un medicamento prescrito por su efecto sobre el cabello. Consulta con tu médico.", habitos:["🥗 Proteínas, hierro y zinc imprescindibles","💨 Seca el pelo antes de dormir","🌡️ Agua tibia","🎀 Evita recogidos tensos",r.fase==="Acabo de terminar"?"⏳ El pelo tarda 3-6 meses en recuperarse":"📅 Si llevas más de 6 meses sin mejorar, consulta",r.intensidad==="Muy intensa, me preocupa mucho"?"⚠️ Solicita una analítica completa":""].filter(Boolean) })
   },
@@ -193,28 +199,10 @@ const RutinaResult=({r,icono,tipo,perfil,onReset})=>(
 
 function RutinaTab(){
   const [step,setStep]=useState("inicio");
-  const [nota,setNota]=useState("");
   const [tipo,setTipo]=useState(null);
   const [resp,setResp]=useState({});
   const [pregIdx,setPregIdx]=useState(0);
-  const [iaRutina,setIaRutina]=useState(null);
-  const [iaLoading,setIaLoading]=useState(false);
-  const [iaError,setIaError]=useState("");
-  const reset=()=>{setStep("inicio");setNota("");setTipo(null);setResp({});setPregIdx(0);setIaRutina(null);setIaLoading(false);setIaError("");};
-  const generarIA=async()=>{
-    if(!nota.trim()||iaLoading)return;
-    setIaLoading(true);setIaError("");
-    try{
-      const nc=nota.replace(/\\/g,"\\\\").replace(/"/g,"'").replace(/\n/g," ").replace(/\r/g,"");
-      const body=`{"model":"claude-sonnet-4-20250514","max_tokens":1500,"messages":[{"role":"user","content":"Eres Daniel Hermosa Pérez, enfermero especialista en cuidados capilares. El paciente dice: ${nc}. Dame una rutina en JSON sin markdown: {\\\"tipo\\\":\\\"string\\\",\\\"aviso\\\":\\\"string\\\",\\\"champu_corriente\\\":{\\\"buscar\\\":[\\\"item\\\"],\\\"evitar\\\":[\\\"item\\\"]},\\\"champu_especifico\\\":{\\\"buscar\\\":[\\\"item\\\"],\\\"evitar\\\":[\\\"item\\\"],\\\"nota\\\":\\\"string\\\"},\\\"acondicionador\\\":{\\\"buscar\\\":[\\\"item\\\"],\\\"evitar\\\":[\\\"item\\\"]},\\\"minoxidil\\\":{\\\"incluir\\\":false,\\\"nota\\\":\\\"\\\"},\\\"suplementos\\\":[\\\"item\\\"],\\\"medicacion\\\":null,\\\"habitos\\\":[\\\"h1\\\",\\\"h2\\\",\\\"h3\\\",\\\"h4\\\",\\\"h5\\\"]}"}]}`;
-      const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:body});
-      if(!res.ok)throw new Error("api");
-      const data=await res.json();
-      const txt=(data.content?.[0]?.text||"").replace(/```json|```/g,"").trim();
-      setIaRutina(JSON.parse(txt));setStep("ia_resultado");
-    }catch(e){setIaError("No se pudo generar. Usa la opción manual de abajo.");}
-    finally{setIaLoading(false);}
-  };
+  const reset=()=>{setStep("inicio");setTipo(null);setResp({});setPregIdx(0);};
   const rutinaDef=tipo?RUTINAS[tipo]:null;
   const preguntas=rutinaDef?.preguntas||[];
   const pregActual=preguntas[pregIdx];
@@ -223,13 +211,7 @@ function RutinaTab(){
   return(
     <div style={{animation:"fadeUp 0.4s ease"}}>
       {step==="inicio"&&<>
-        <p style={{fontSize:13,color:"#5a8a8a",marginBottom:14,fontStyle:"italic"}}>Cuéntame qué te pasa con tu cabello y generaré una rutina personalizada.</p>
-        <textarea value={nota} onChange={e=>setNota(e.target.value)} placeholder="Ejemplo: Me pica el cuero cabelludo desde hace un año, empeora con el estrés..." rows={4} style={{width:"100%",padding:"12px 14px",background:"rgba(42,138,138,0.05)",border:`1px solid ${tB}`,borderRadius:10,color:"#f0ede6",fontSize:13,fontFamily:"inherit",boxSizing:"border-box",resize:"vertical",lineHeight:1.7}}/>
-        {iaError&&<p style={{fontSize:12,color:"#e05555",margin:"8px 0 0",textAlign:"center"}}>{iaError}</p>}
-        <button onClick={generarIA} disabled={!nota.trim()||iaLoading} style={{width:"100%",marginTop:10,padding:14,background:nota.trim()&&!iaLoading?"linear-gradient(135deg,#1a6a6a,#0d4a4a)":"rgba(42,138,138,0.1)",border:`1px solid ${nota.trim()&&!iaLoading?teal:"#1a2e2e"}`,borderRadius:8,color:nota.trim()&&!iaLoading?"#e0f5f5":"#3a6a6a",fontSize:14,fontFamily:"inherit",cursor:nota.trim()&&!iaLoading?"pointer":"not-allowed"}}>
-          {iaLoading?"⏳ Generando tu rutina...":"✨ Generar mi rutina"}
-        </button>
-        <div style={{display:"flex",alignItems:"center",gap:10,margin:"16px 0"}}><div style={{flex:1,height:1,background:"#1a2e2e"}}/><span style={{fontSize:11,color:"#2a5a5a",whiteSpace:"nowrap"}}>o elige tu perfil</span><div style={{flex:1,height:1,background:"#1a2e2e"}}/></div>
+        <p style={{fontSize:13,color:"#5a8a8a",marginBottom:14,fontStyle:"italic"}}>Selecciona el problema que mejor describe tu situación y recibirás una rutina personalizada.</p>
         <div style={{display:"flex",flexDirection:"column",gap:9}}>
           {Object.entries(RUTINAS).map(([key,val])=>(
             <button key={key} onClick={()=>{setTipo(key);setStep("preguntas");setPregIdx(0);setResp({});}} style={{background:"rgba(42,138,138,0.04)",border:`1px solid ${tB}`,borderRadius:12,padding:"14px 18px",cursor:"pointer",textAlign:"left",fontFamily:"inherit",display:"flex",alignItems:"center",gap:14,color:"inherit"}}>
@@ -239,7 +221,6 @@ function RutinaTab(){
         </div>
         <div style={{marginTop:16}}><BtnIG/></div>
       </>}
-      {step==="ia_resultado"&&iaRutina&&<RutinaResult r={iaRutina} icono="✨" tipo={iaRutina.tipo} perfil={null} onReset={reset}/>}
       {step==="preguntas"&&pregActual&&<>
         <button onClick={()=>{setStep("inicio");setPregIdx(0);}} style={{background:"none",border:"none",color:"#3a6a6a",cursor:"pointer",fontSize:12,marginBottom:16,fontFamily:"inherit",padding:0}}>← Volver</button>
         <div style={{marginBottom:20}}>
@@ -260,30 +241,12 @@ function RutinaTab(){
 }
 
 function AnalizadorTab(){
-  const [mode,setMode]=useState(null);
   const [stage,setStage]=useState("idle");
   const [txt,setTxt]=useState("");
   const [results,setResults]=useState(null);
   const [score,setScore]=useState(null);
-  const [imgLoading,setImgLoading]=useState(false);
-  const [imgError,setImgError]=useState("");
-  const fileRef=useRef();
-  const reset=()=>{setMode(null);setStage("idle");setTxt("");setResults(null);setScore(null);setImgLoading(false);setImgError("");};
+  const reset=()=>{setStage("idle");setTxt("");setResults(null);setScore(null);};
   const finish=text=>{const f=doAnalyze(text);setResults(f);setScore(calcScore(f));setStage("results");};
-  const handleFile=async(file)=>{
-    if(!file)return;
-    setImgLoading(true);setImgError("");
-    try{
-      const b64=await new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(",")[1]);r.onerror=()=>rej(new Error("read"));r.readAsDataURL(file);});
-      const res=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,messages:[{role:"user",content:[{type:"image",source:{type:"base64",media_type:file.type||"image/jpeg",data:b64}},{type:"text",text:"Extrae ÚNICAMENTE la lista de ingredientes INCI de esta etiqueta, separados por comas, sin añadir nada más."}]}]})});
-      if(!res.ok)throw new Error("api");
-      const data=await res.json();
-      const extracted=(data.content?.[0]?.text||"").trim();
-      if(!extracted)throw new Error("empty");
-      finish(extracted);
-    }catch(e){setImgError("No se pudo leer la imagen. Intenta con mejor iluminación o usa la opción de texto.");}
-    finally{setImgLoading(false);}
-  };
   const rating=score!==null?getRating(score):null;
   const groups=results?[
     {items:results.filter(r=>r.level==="alto"),title:"🔴 Irritantes confirmados",cfg:LCFG.alto},
@@ -293,14 +256,17 @@ function AnalizadorTab(){
   ]:[];
   return(
     <div style={{animation:"fadeUp 0.4s ease"}}>
-      {stage==="idle"&&!mode&&<>
-        <p style={{fontSize:13,color:"#5a8a8a",textAlign:"center",marginBottom:16,fontStyle:"italic"}}>Analiza si un producto es seguro para tu cabello.</p>
-        <button onClick={()=>setMode("foto")} style={{width:"100%",padding:16,background:"linear-gradient(135deg,#1a6a6a,#0d4a4a)",border:`1px solid ${teal}`,borderRadius:10,color:"#e0f5f5",fontSize:15,fontFamily:"inherit",cursor:"pointer",marginBottom:10,display:"flex",alignItems:"center",gap:12}}>
-          <span style={{fontSize:22}}>📸</span><div style={{textAlign:"left"}}><div>Fotografiar etiqueta</div><div style={{fontSize:11,color:"#7abaaa",marginTop:2}}>Haz foto o sube imagen desde galería</div></div>
-        </button>
-        <button onClick={()=>setMode("text")} style={{width:"100%",padding:14,background:"none",border:`1px solid ${tB}`,borderRadius:10,color:"#5a8a8a",fontSize:14,fontFamily:"inherit",cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",justifyContent:"center",gap:10}}>
-          <span style={{fontSize:18}}>📋</span> Pegar lista de ingredientes
-        </button>
+      {stage==="idle"&&<>
+        <p style={{fontSize:13,color:"#5a8a8a",textAlign:"center",marginBottom:20,fontStyle:"italic"}}>
+          Copia la lista de ingredientes de cualquier producto y analiza su seguridad para el cuero cabelludo.
+        </p>
+        <div style={{border:`1px solid ${tB}`,borderRadius:12,padding:"18px 16px",marginBottom:16,background:"rgba(42,138,138,0.03)"}}>
+          <div style={{fontSize:10,letterSpacing:3,color:teal,textTransform:"uppercase",marginBottom:10}}>Lista de ingredientes INCI</div>
+          <textarea value={txt} onChange={e=>setTxt(e.target.value)} placeholder={"Pega aquí los ingredientes del producto...\n\nEjemplo:\nAqua, Caffeine, Panthenol, Zinc Pyrithione, Niacinamide, Sodium Lauryl Sulfate..."} rows={8} style={{width:"100%",padding:"12px 14px",background:"rgba(42,138,138,0.05)",border:`1px solid ${tB}`,borderRadius:10,color:"#f0ede6",fontSize:13,fontFamily:"Georgia,serif",boxSizing:"border-box",resize:"vertical",lineHeight:1.7}}/>
+          <button onClick={()=>txt.trim()&&finish(txt)} disabled={!txt.trim()} style={{width:"100%",marginTop:12,padding:14,background:txt.trim()?"linear-gradient(135deg,#1a6a6a,#0d4a4a)":"rgba(42,138,138,0.1)",border:`1px solid ${txt.trim()?teal:"#1a2e2e"}`,borderRadius:8,color:txt.trim()?"#e0f5f5":"#3a6a6a",fontSize:14,fontFamily:"Georgia,serif",cursor:txt.trim()?"pointer":"not-allowed",letterSpacing:1}}>
+            🔬 Analizar ingredientes
+          </button>
+        </div>
         <div style={{border:"1px solid #1a2e2e",borderRadius:10,padding:14,background:"rgba(42,138,138,0.02)",marginBottom:16}}>
           <div style={{fontSize:10,letterSpacing:3,color:"#2a5a5a",textTransform:"uppercase",marginBottom:10,fontWeight:"bold"}}>Qué analiza</div>
           {[["🔴","Irritantes confirmados (SLS, MIT/CMIT, formaldehído...)"],["🟡","Alérgenos de declaración obligatoria UE (linalool, limoneno...)"],["🔵","A vigilar con uso continuado (parabenos, siliconas, alcohol denat...)"],["🟢","Beneficiosos con evidencia (cafeína, zinc, niacinamida, aminexil...)"]].map(([i,t],k)=>(
@@ -309,27 +275,6 @@ function AnalizadorTab(){
         </div>
         <BtnIG/>
       </>}
-      {stage==="idle"&&mode==="foto"&&<div style={{animation:"fadeUp 0.3s ease"}}>
-        <button onClick={()=>setMode(null)} style={{background:"none",border:"none",color:"#3a6a6a",cursor:"pointer",fontSize:12,marginBottom:14,fontFamily:"inherit",padding:0}}>← Volver</button>
-        <input ref={fileRef} type="file" accept="image/*" capture="environment" style={{display:"none"}} onChange={e=>handleFile(e.target.files?.[0])}/>
-        <div style={{border:`2px dashed ${tB}`,borderRadius:16,padding:"32px 20px",textAlign:"center",marginBottom:14}}>
-          <div style={{fontSize:44,marginBottom:10}}>📸</div>
-          <p style={{fontSize:14,color:"#5a8a8a",marginBottom:18,lineHeight:1.7}}>Fotografía la lista de ingredientes.<br/><span style={{fontSize:12,color:"#2a5a5a"}}>Texto legible y bien iluminado.</span></p>
-          <button onClick={()=>fileRef.current&&fileRef.current.click()} disabled={imgLoading} style={{padding:"13px 0",background:"linear-gradient(135deg,#1a6a6a,#0d4a4a)",border:`1px solid ${teal}`,borderRadius:8,color:"#e0f5f5",fontSize:14,fontFamily:"inherit",cursor:"pointer",width:"100%"}}>
-            {imgLoading?"⏳ Leyendo ingredientes...":"📷 Abrir cámara / galería"}
-          </button>
-        </div>
-        {imgError&&<div style={{padding:"11px 14px",background:"rgba(224,85,85,0.08)",border:"1px solid rgba(224,85,85,0.25)",borderRadius:8,marginBottom:12}}><p style={{fontSize:12,color:"#e05555",margin:0}}>{imgError}</p></div>}
-        <button onClick={()=>setMode("text")} style={{width:"100%",padding:11,background:"none",border:"1px solid #1a2e2e",borderRadius:8,color:"#3a6a6a",fontSize:13,fontFamily:"inherit",cursor:"pointer"}}>Prefiero pegar el texto</button>
-      </div>}
-      {stage==="idle"&&mode==="text"&&<div style={{animation:"fadeUp 0.3s ease"}}>
-        <button onClick={()=>setMode(null)} style={{background:"none",border:"none",color:"#3a6a6a",cursor:"pointer",fontSize:12,marginBottom:14,fontFamily:"inherit",padding:0}}>← Volver</button>
-        <div style={{fontSize:10,letterSpacing:3,color:teal,textTransform:"uppercase",marginBottom:8}}>Lista de ingredientes</div>
-        <textarea value={txt} onChange={e=>setTxt(e.target.value)} placeholder={"Pega aquí los ingredientes...\n\nEjemplo: Aqua, Caffeine, Panthenol, Zinc Pyrithione..."} rows={8} style={{width:"100%",padding:"12px 14px",background:"rgba(42,138,138,0.05)",border:`1px solid ${tB}`,borderRadius:10,color:"#f0ede6",fontSize:13,fontFamily:"inherit",boxSizing:"border-box",resize:"vertical",lineHeight:1.7}}/>
-        <button onClick={()=>txt.trim()&&finish(txt)} disabled={!txt.trim()} style={{width:"100%",marginTop:10,padding:13,background:txt.trim()?"linear-gradient(135deg,#1a6a6a,#0d4a4a)":"rgba(42,138,138,0.1)",border:`1px solid ${txt.trim()?teal:"#1a2e2e"}`,borderRadius:8,color:txt.trim()?"#e0f5f5":"#3a6a6a",fontSize:14,fontFamily:"inherit",cursor:txt.trim()?"pointer":"not-allowed"}}>
-          🔬 Analizar ingredientes
-        </button>
-      </div>}
       {stage==="results"&&results&&rating&&<div style={{animation:"fadeUp 0.4s ease"}}>
         <div style={{borderRadius:14,overflow:"hidden",border:`1px solid ${rating.color}40`,marginBottom:16}}>
           <div style={{background:`linear-gradient(135deg,${rating.color}20,${rating.color}08)`,padding:"18px 16px",display:"flex",alignItems:"center",gap:16}}>
@@ -353,7 +298,7 @@ function AnalizadorTab(){
             ))}
           </div>
         </div>
-        {results.length===0&&<div style={{textAlign:"center",padding:24,border:"1px solid #1a2e2e",borderRadius:12,marginBottom:16}}><p style={{fontSize:13,color:"#5a8a8a",margin:0}}>No se detectaron ingredientes. Verifica que el texto sea una lista INCI completa.</p></div>}
+        {results.length===0&&<div style={{textAlign:"center",padding:24,border:"1px solid #1a2e2e",borderRadius:12,marginBottom:16}}><p style={{fontSize:13,color:"#5a8a8a",margin:0}}>No se detectaron ingredientes conocidos. Verifica que el texto sea una lista INCI.</p></div>}
         {groups.map(({items,title,cfg})=>items.length>0&&(
           <div key={title} style={{marginBottom:14}}>
             <div style={{fontSize:10,letterSpacing:2,color:cfg.color,textTransform:"uppercase",marginBottom:8}}>{title}</div>
