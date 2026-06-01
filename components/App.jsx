@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 const DB = [
   { name:"Sodium Lauryl Sulfate", aliases:["sodium lauryl sulfate","sls"], category:"Irritante confirmado", level:"alto", score:-20, description:"Tensioactivo agresivo con evidencia sólida de irritación del cuero cabelludo.", tip:"Busca alternativas como Sodium Cocoyl Glutamate o Decyl Glucoside." },
@@ -37,20 +37,20 @@ const DB = [
 ];
 
 const P = [
-  { id:1,  marca:"Nuggela & Sulé", nombre:"Champú Premium Nº1 Cebolla Roja 250ml", precio:17.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","postparto","estres"], nota:"Estudio clínico: -69,9% caída en 60 días. Sin parabenos ni siliconas." },
-  { id:2,  marca:"Nuggela & Sulé", nombre:"SuprAcondicionador Imperial Cebolla Roja 250ml", precio:16.95, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres"], nota:"Protege fibras de queratina. Para cabellos finos o con tendencia grasa." },
+  { id:1,  marca:"Nuggela & Sulé", nombre:"Champú Premium Nº1 Cebolla Roja 250ml", precio:17.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","postparto","estres","fino"], nota:"Estudio clínico: -69,9% caída en 60 días. Sin parabenos ni siliconas." },
+  { id:2,  marca:"Nuggela & Sulé", nombre:"SuprAcondicionador Imperial Cebolla Roja 250ml", precio:16.95, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres","fino"], nota:"Protege fibras de queratina. Para cabellos finos o con tendencia grasa." },
   { id:4,  marca:"Nuggela & Sulé", nombre:"Martinn Complemento Alimenticio 60 comp.", precio:23.92, cats:["suplemento"], perfs:["difusa","androgenetica","postparto","estres","medicamentos"], nota:"Con zinc, biotina, hierro, selenio y vitaminas B." },
-  { id:34, marca:"Nuggela & Sulé", nombre:"Mascarilla South Beach / Tucuma 250ml", precio:19.54, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres","sensible","caspa","medicamentos"], nota:"Manteca de Tucuma — alternativa natural a las siliconas. Vegana." },
-  { id:5,  marca:"Moncho Moreno", nombre:"Coffee Smoothie Champú Anticaída 250ml", precio:19.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","postparto","estres","medicamentos"], nota:"Sin sulfatos, siliconas ni parabenos. Con cafeína, Capixyl™ y romero." },
+  { id:34, marca:"Nuggela & Sulé", nombre:"Mascarilla South Beach / Tucuma 250ml", precio:19.54, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres","sensible","caspa","medicamentos","debilitado"], nota:"Manteca de Tucuma — alternativa natural a las siliconas. Vegana." },
+  { id:5,  marca:"Moncho Moreno", nombre:"Coffee Smoothie Champú Anticaída 250ml", precio:19.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","postparto","estres","medicamentos","debilitado"], nota:"Sin sulfatos, siliconas ni parabenos. Con cafeína, Capixyl™ y romero." },
   { id:6,  marca:"Moncho Moreno", nombre:"Healthy Smoothie Champú Anticaspa 250ml", precio:23.17, cats:["champu_especifico"], perfs:["caspa","sensible"], nota:"Champú ayurvédico seborregulador. Sin sulfatos ni parabenos." },
-  { id:7,  marca:"Moncho Moreno", nombre:"Gorgeous Hair Champú Hidratante 250ml", precio:19.90, cats:["champu_corriente"], perfs:["sensible","postparto","tricotilomania"], nota:"Ultranutritivo e hidratante." },
-  { id:35, marca:"Moncho Moreno", nombre:"Mascarilla One Minute Wonder 250ml", precio:19.90, cats:["acondicionador"], perfs:["difusa","postparto","estres","sensible","tricotilomania","medicamentos"], nota:"Mascarilla reparadora de 1 minuto. Con aceite de Camelia Japónica." },
-  { id:8,  marca:"Vichy Dercos", nombre:"Champú Energy+ Aminexil 200ml", precio:14.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","medicamentos"], nota:"Con Aminexil + niacinamida. Relación calidad-precio muy buena." },
-  { id:9,  marca:"Vichy Dercos", nombre:"Champú Energy+ Aminexil 400ml", precio:20.10, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","medicamentos"], nota:"Formato ahorro. El más accesible con evidencia clínica." },
+  { id:7,  marca:"Moncho Moreno", nombre:"Gorgeous Hair Champú Hidratante 250ml", precio:19.90, cats:["champu_corriente"], perfs:["sensible","postparto","tricotilomania","fino","debilitado"], nota:"Ultranutritivo e hidratante." },
+  { id:35, marca:"Moncho Moreno", nombre:"Mascarilla One Minute Wonder 250ml", precio:19.90, cats:["acondicionador"], perfs:["difusa","postparto","estres","sensible","tricotilomania","medicamentos","debilitado"], nota:"Mascarilla reparadora de 1 minuto. Con aceite de Camelia Japónica." },
+  { id:8,  marca:"Vichy Dercos", nombre:"Champú Energy+ Aminexil 200ml", precio:14.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","medicamentos","fino"], nota:"Con Aminexil + niacinamida. Relación calidad-precio muy buena." },
+  { id:9,  marca:"Vichy Dercos", nombre:"Champú Energy+ Aminexil 400ml", precio:20.10, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","medicamentos","fino"], nota:"Formato ahorro. El más accesible con evidencia clínica." },
   { id:19, marca:"Vichy Dercos", nombre:"Champú Anticaspa DS Normal-Graso 200ml", precio:17.92, cats:["champu_especifico"], perfs:["caspa"], nota:"Con Sulfuro de Selenio. Elimina el 100% de la caspa visible." },
   { id:20, marca:"Vichy Dercos", nombre:"Champú Anticaspa DS Cabello Seco 200ml", precio:17.92, cats:["champu_especifico"], perfs:["caspa","sensible"], nota:"Fórmula DS para cuero cabelludo seco o sensible." },
-  { id:24, marca:"Alpecin", nombre:"Caffeine Shampoo C1 250ml", precio:10.45, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres"], nota:"Sin siliconas. Dejar actuar 2 minutos." },
-  { id:25, marca:"Alpecin", nombre:"Caffeine Shampoo C1 375ml", precio:12.65, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres"], nota:"Formato ahorro. Cafeína + zinc + niacina." },
+  { id:24, marca:"Alpecin", nombre:"Caffeine Shampoo C1 250ml", precio:10.45, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","fino"], nota:"Sin siliconas. Dejar actuar 2 minutos." },
+  { id:25, marca:"Alpecin", nombre:"Caffeine Shampoo C1 375ml", precio:12.65, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","fino"], nota:"Formato ahorro. Cafeína + zinc + niacina." },
   { id:26, marca:"Alpecin", nombre:"Caffeine Liquid Tónico 200ml", precio:11.70, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres"], nota:"Tónico sin aclarado para días sin lavado." },
   { id:27, marca:"Alpecin", nombre:"Hybrid Champú Cuero Cabelludo Sensible 250ml", precio:9.90, cats:["champu_especifico"], perfs:["sensible","difusa"], nota:"Cafeína suave para cueros cabelludos sensibles." },
   { id:28, marca:"Pharma Hermetic", nombre:"Champú Anticaída SP55 200ml", precio:22.00, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","postparto","medicamentos"], nota:"Sin sulfatos ni parabenos. Avalado por la World Trichology Society." },
@@ -64,13 +64,13 @@ const P = [
   { id:21, marca:"ISDIN Lambdapil", nombre:"Champú Anticaída 200ml", precio:13.00, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","postparto","medicamentos"], nota:"Con Serenoa Repens y complejo Trichogen." },
   { id:22, marca:"ISDIN Lambdapil", nombre:"Loción Anticaída 20 Monodosis", precio:40.53, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres"], nota:"Con melatonina y Ginkgo Biloba. Eficacia clínica con TrichoScan." },
   { id:23, marca:"ISDIN Lambdapil", nombre:"Cápsulas 5α Plus 60 caps", precio:34.20, cats:["suplemento"], perfs:["difusa","androgenetica","estres"], nota:"Triple 5α complex + biotina y zinc. Mínimo 3 meses." },
-  { id:10, marca:"Biotricología", nombre:"Champú Uso Frecuente 250ml", precio:18.90, cats:["champu_corriente"], perfs:["difusa","androgenetica","postparto","estres","sensible","areata","tricotilomania","medicamentos"], nota:"Fórmula suave para uso diario." },
+  { id:10, marca:"Biotricología", nombre:"Champú Uso Frecuente 250ml", precio:18.90, cats:["champu_corriente"], perfs:["difusa","androgenetica","postparto","estres","sensible","areata","tricotilomania","medicamentos","fino","debilitado"], nota:"Fórmula suave para uso diario." },
   { id:11, marca:"Biotricología", nombre:"Champú Anticaída Cabellos Grasos 250ml", precio:19.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres"], nota:"Regula la glándula sebácea. Avalado por clínicas de trasplante." },
-  { id:12, marca:"Biotricología", nombre:"Champú Anticaída Cabellos Secos 250ml", precio:18.90, cats:["champu_especifico"], perfs:["difusa","postparto","estres","sensible","medicamentos"], nota:"Para caída con tendencia seca." },
-  { id:13, marca:"Biotricología", nombre:"Champú Hidratante Radiance 250ml", precio:19.90, cats:["champu_corriente"], perfs:["sensible","postparto","tricotilomania","areata"], nota:"Para cueros cabelludos delicados o sensibles." },
+  { id:12, marca:"Biotricología", nombre:"Champú Anticaída Cabellos Secos 250ml", precio:18.90, cats:["champu_especifico"], perfs:["difusa","postparto","estres","sensible","medicamentos","debilitado"], nota:"Para caída con tendencia seca." },
+  { id:13, marca:"Biotricología", nombre:"Champú Hidratante Radiance 250ml", precio:19.90, cats:["champu_corriente"], perfs:["sensible","postparto","tricotilomania","areata","fino","debilitado"], nota:"Para cueros cabelludos delicados o sensibles." },
   { id:14, marca:"Biotricología", nombre:"Champú Caspa Cabellos Grasos 250ml", precio:18.90, cats:["champu_especifico"], perfs:["caspa"], nota:"Elimina la caspa en cuero cabelludo graso." },
   { id:15, marca:"Biotricología", nombre:"Champú Caspa Cabellos Secos 250ml", precio:18.90, cats:["champu_especifico"], perfs:["caspa","sensible"], nota:"Anticaspa para cueros cabelludos secos o sensibles." },
-  { id:16, marca:"Biotricología", nombre:"Acondicionador Tricofásico 125ml", precio:19.90, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres","sensible","areata","tricotilomania"], nota:"Para cabellos finos y largos." },
+  { id:16, marca:"Biotricología", nombre:"Acondicionador Tricofásico 125ml", precio:19.90, cats:["acondicionador"], perfs:["difusa","androgenetica","postparto","estres","sensible","areata","tricotilomania","fino"], nota:"Para cabellos finos y largos." },
   { id:17, marca:"Biotricología", nombre:"Loción Anticaída GR-8 50ml", precio:27.90, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","medicamentos"], nota:"Concentrado sin aclarado. Tratamiento estrella de la marca." },
   { id:18, marca:"Biotricología", nombre:"Loción Base Esencial Calmante 50ml", precio:15.90, cats:["champu_especifico"], perfs:["sensible","caspa","areata"], nota:"Calmante para cueros cabelludos sensibles." },
   { id:36, marca:"Cantabria Labs Iraltone", nombre:"Champú Fortificante 400ml", precio:15.68, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","postparto","medicamentos"], nota:"Estimula el crecimiento. Avalado por dermatólogos." },
@@ -87,9 +87,9 @@ const P = [
   { id:51, marca:"Ducray Anacaps", nombre:"Anacaps Expert 90 caps — Caída crónica", precio:32.90, cats:["suplemento"], perfs:["androgenetica","difusa"], nota:"Para caída crónica hormonal. No apto en embarazo ni lactancia." },
   { id:46, marca:"Klorane", nombre:"Champú Quinina + Edelweiss Bio 400ml", precio:13.00, cats:["champu_especifico"], perfs:["difusa","estres","postparto"], nota:"Con quinina (vasodilatador natural) y Edelweiss Bio antioxidante." },
   { id:49, marca:"Vipelín", nombre:"Vipelin Forte 60 cáps.", precio:29.90, cats:["suplemento"], perfs:["androgenetica","difusa","estres"], nota:"Con Saw Palmetto 340mg + Pygeum africanum + L-cisteína + zinc. Vegano." },
-  { id:52, marca:"René Furterer", nombre:"Triphasic Champú Estimulante 250ml", precio:18.30, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","postparto"], nota:"Con ATP y extracto de Pfaffia. Sin siliconas. 96% origen natural." },
+  { id:52, marca:"René Furterer", nombre:"Triphasic Champú Estimulante 250ml", precio:18.30, cats:["champu_especifico"], perfs:["difusa","androgenetica","estres","postparto","debilitado"], nota:"Con ATP y extracto de Pfaffia. Sin siliconas. 96% origen natural." },
   { id:53, marca:"René Furterer", nombre:"Triphasic Reactional Ampollas 12x5ml", precio:47.95, cats:["champu_especifico"], perfs:["difusa","postparto","estres","medicamentos"], nota:"Para caída reaccional. Sin aclarado. 1 ampolla por semana 3 meses." },
-  { id:54, marca:"René Furterer", nombre:"Vitalfan Cápsulas Caída Progresiva 3x30 caps", precio:37.95, cats:["suplemento"], perfs:["androgenetica","difusa","estres"], nota:"Con extracto de grosella negra, biotina, vitamina E y zinc." },
+  { id:54, marca:"René Furterer", nombre:"Vitalfan Cápsulas Caída Progresiva 3x30 caps", precio:37.95, cats:["suplemento"], perfs:["androgenetica","difusa","estres","debilitado"], nota:"Con extracto de grosella negra, biotina, vitamina E y zinc." },
 ];
 
 const RUTINAS = {
